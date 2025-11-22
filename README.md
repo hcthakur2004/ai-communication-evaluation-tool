@@ -123,3 +123,30 @@ Feedback:
 - Any platform that can run `uvicorn` will work (Render, Railway, etc.).
 - Serve the `frontend` directory statically; the backend already mounts it at `/`.
 - For production, pin Python, FastAPI, and set `use_semantic` based on available compute.
+
+## How to Run (Step-by-Step)
+Follow these steps on Windows PowerShell to run the full project locally:
+
+1. Create a virtual environment:
+   ```powershell
+   python -m venv .venv
+   ```
+2. Activate the environment:
+   ```powershell
+   .\.venv\Scripts\Activate.ps1
+   ```
+3. Install requirements:
+   ```powershell
+   pip install -r requirements.txt
+   ```
+4. Start the backend server (serves frontend too):
+   ```powershell
+   .\.venv\Scripts\python.exe -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+   ```
+5. Open the web UI:
+   - Visit `http://127.0.0.1:8000/`
+   - Paste or upload a `.txt` transcript and click **Score**
+
+Optional settings:
+- To use a custom rubric Excel, provide its path in the UI textbox or send `rubric_path` in the API request.
+- Toggle semantic scoring via the UI checkbox or set `use_semantic` in the API payload.

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rubric Scorer</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Rubric-Based Transcript Scorer</h1>
+
+    <div class="controls">
+      <label class="label">Paste transcript</label>
+      <textarea id="transcript" rows="10" placeholder="Paste transcript text here..."></textarea>
+
+      <div class="row">
+        <input type="file" id="fileInput" accept=".txt" />
+        <label><input type="checkbox" id="useSemantic" checked /> Use semantic scoring</label>
+      </div>
+
+      <div class="row">
+        <input type="text" id="rubricPath" placeholder="Optional rubric Excel path (defaults to sample_inputs/Case study for interns.xlsx)" />
+      </div>
+
+      <button id="scoreBtn" class="primary">
+        <span class="btn-label">Score</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+
+      <!-- Toast for inline errors -->
+      <div id="toast" class="toast" hidden></div>
+    </div>
+
+    <div id="results" class="results" hidden>
+      <h2>Results</h2>
+      <div class="summary">
+        <div><strong>Overall Score:</strong> <span id="overall"></span></div>
+        <div><strong>Words:</strong> <span id="wordCount"></span></div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Score</th>
+            <th>Semantic</th>
+            <th>Keywords Found</th>
+            <th>Feedback</th>
+          </tr>
+        </thead>
+        <tbody id="criteriaBody"></tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>Backend expects Excel at <code>sample_inputs/Case study for interns.xlsx</code> by default.</p>
+      <p>Tip: Upload a .txt file to populate the textarea.</p>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
